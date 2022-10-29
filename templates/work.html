@@ -15,7 +15,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./static/assets/apple-icon-180x180.png">
   <link href="./static/assets/rocketfavicon.ico" rel="icon">
 
-  <title>Project page</title>  
+  <title>JPG to PNG</title>  
 
 <link href="./static/main.3f6952e4.css" rel="stylesheet"></head>
 
@@ -63,39 +63,34 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <img src="./assets/images/work001-01.jpg" class="img-responsive" alt="">
+        <img src="./static/assets/images/work001-01.jpg" class="img-responsive" alt="">
         <div class="card-container">
           <div class="text-center">
-            <h1 class="h2">Projects</h1>
+            <h1 class="h2">JPG to PNG converter</h1>
           </div>
-          <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~If If you want to see the how I coded the projects and get more information about the logic behind it you can always check on my github page.Thank you very much!</p>
-          <blockquote>
-            <p>
+          <br>
+          <p><font size='+2'>For more insight of the projects that im working on right now or the contributions that I have to open source you can always visit my GitHub account.Thank you very much!</p></font>
+            <p><font size='+1'>
               GitHub : https://github.com/Sicxx211 or click this ->
               <a href="https://github.com/Sicxx211/" title="" class="fa-icon">
                         <i class="fa fa-github"></i>
                       </a>
-            </p>
-            
-            <small class="pull-right">Andrei Bucur</small>
-          </blockquote>
+            </p></font>
+            <small class="pull-right">-Andrei Bucur</small>
         </div>
       </div>
-
-      
-      
-      <div class="col-md-8 col-md-offset-2 section-container-spacer">
-        <div class="row">
-          <div class="col-xs-12 col-md-6">
-            <img src="./static/assets/images/work03-hover.jpg" class="img-responsive" alt="">
-            <p>2Way Handshake</p>
-          </div>
-          <div class="col-xs-12 col-md-6">
-            <img src="./static/assets/images/work04-hover.jpg" class="img-responsive" alt="">
-            <p>The Web</p>
-          </div>
-        </div>
-      </div>
+      <h2> How I wrote the code </h2>
+      <p><font size='+3'> I wrote this code for convenience, I could use the web to convert all of my files from JPG to PNG but sometimes it would just take too long to do it,just imagine if I had a folder with thousands of JPG images, it would take ages to do this conversion using the web, so I fixed this problem with this script, it's easy to use, not to complex, and fast.</p></font>
+      <p><font size='+1'>image_folder = sys.argv[1] #This will allow us to input the name of the folder we want to work on<br>
+output_folder = sys.argv[2]#This will allow us to input the name of the new folder we want to create for the new images<br>
+if not os.path.exists(output_folder): #This will check if the new folder doesn't exists<br>
+  os.makedirs(output_folder)  #This command, in case the new folder doesn't exists, will create it <br>
+for filename in os.listdir(image_folder): #This for loop will take all the images in the specified folder we give it and convert the images from jpg to png <br>
+  img = Image.open(f'{image_folder}{filename}') #This will open the images inside the specified folder<br> 
+  clean_name = os.path.splitext(filename)[0] #This will clear out the .jpg in the name of the file so when we save it it will have only .png not .jpg.png <br>
+  img.save(f'{output_folder}{clean_name}.png' , 'png') #This will save the images in the new folder that we specified, converting them to PNG <br>
+  print('all done!') #This will print out everytime a file is converted<br>
+*Instance of running the code ->$ python3 pngconverter.py pokedex converted</p></font>
 
       <div class="col-xs-12">
         <img src="./static/assets/images/elfinal.png" class="img-responsive" alt="">
@@ -108,7 +103,7 @@
 
 <footer class="footer-container text-center">
   <div class="container">
-    <div class="row">
+    <div class="row">*Write Code Here*
       <div class="col-xs-12">
         
       </div>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./static/assets/apple-icon-180x180.png">
+  <link href="./static/assets/rocketfavicon.ico" rel="icon">
+
+  <title>Pass Checker</title>  
+
+<link href="./static/main.3f6952e4.css" rel="stylesheet"></head>
+
+<body class="">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+<!-- Add your content of header -->
+<header>
+  <nav class="navbar  navbar-fixed-top navbar-default">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./works.html" title="">02 : Works</a></li>
+          <li><a href="./about.html" title="">03 : About me</a></li>
+          <li><a href="./contact.html" title="">04 : Contact</a></li>
+          
+        </ul>
+
+
+          <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
+            <li><a href="./index.html" title="" class="active">001</a></li>
+            <li><a href="./index.html" title="">002</a></li>
+            <li><a href="./index.html" title="">003</a></li>
+            <li><a href="./index.html" title="">004</a></li>
+            <li><a href="./index.html" title="">005</a></li>
+            <li><a href="./index.html" title="">006</a></li>
+          </ul>
+
+
+      </div> 
+    </div>
+  </nav>
+</header>
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <img src="./static/assets/images/work001-01.jpg" class="img-responsive" alt="">
+        <div class="card-container">
+          <div class="text-center">
+            <h1 class="h2">Password Checker</h1>
+          </div>
+          <br>
+          <p><font size='+2'>For more insight of the projects that im working on right now or the contributions that I have to open source you can always visit my GitHub account.Thank you very much!</p></font>
+            <p><font size='+1'>
+              GitHub : https://github.com/Sicxx211 or click this ->
+              <a href="https://github.com/Sicxx211/" title="" class="fa-icon">
+                        <i class="fa fa-github"></i>
+                      </a>
+            </p></font>
+            <small class="pull-right">-Andrei Bucur</small>
+        </div>
+      </div>
+      <h2> How I wrote the code </h2>
+      <br>
+      <p><font size="+2">I decided to write this app in order for everyone to be able to check if their password was present in a databreach or not.You may be wondering, but hey haveibeenpwned does the same thing on the web right?Yes it does, but the only problem that it has, everything that you type in there to check is going to be stored in another database, and in case of a breach even if your current password wasn't leaked, it may be after the incident.So I used their API to check if the password was leaked or not, but if you are going to use this app, everything that you may type is going to be stored inside your computer's memory not on their database.So it's an extra layer of security, fast and reliable.</p></font>
+
+      <p><font size='+1'>
+import requests  #we use this library to connect to an API<br>
+import hashlib #we use this library to do SHA1 hashing<br> 
+import sys  #We will use this library to be able to give how many passwords we want to check as a input<br>
+<br>
+
+def request_api_data(query_char): #Basically this will connect to the API server and query_char will be the first 5 hashed characters of the password<br> 
+&nbspurl = 'https://api.pwnedpasswords.com/range/' + query_char  #This connects to the api and adds the 5 hashed chars we input<br>
+&nbspres = requests.get(url)<br>
+&nbspif res.status_code != 200: #This says, if the response to the API is not 200 OK, we will raise this error<br>
+&nbsp&nbspraise RuntimeError(f'Error fetching: {res.status_code}, check the api and try again')<br>
+&nbspreturn res<br>
+<br>
+def get_password_leaks_count(hashes, hash_to_check):<br>
+&nbsphashes = (line.split(':') for line in hashes.text.splitlines())<br>
+&nbspfor h, count in hashes:<br>
+&nbsp&nbspif h == hash_to_check:<br>
+&nbsp&nbsp&nbspreturn count<br>
+&nbspreturn 0<br>
+<br>
+def pwned_api_check(password):<br>
+&nbspsha1password = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()  #Basically this will first encode the password that we input into UTF-8, then it's going to be converted to SHA1, we are going to use hexdigest to return it into only HEXADECIMAL values, and finally we are going to make everything upper case<br>
+<br>
+&nbspfirst5_char, tail = sha1password[:5], sha1password[5:] #This basically will access only the first 5 characters of the password, and the tail is going to access the rest of it<br>
+<br>
+&nbspresponse = request_api_data(first5_char) #We use this to work only with the first 5 characters
+&nbspreturn get_password_leaks_count(response, tail)<br>
+<br>
+def main(args):<br>
+&nbspfor password in args:<br>
+&nbsp&nbspcount = pwned_api_check(password)<br>
+&nbsp&nbspif count:<br>
+&nbsp&nbsp&nbspprint(f'{password} was found {count} times... you should probably change your password!')<br>
+&nbsp&nbspelse:<br>
+&nbsp&nbsp&nbspprint(f'{password} was NOT found. Great job!')<br>
+&nbspreturn 'done!'<br>
+if _name_ == '_main_':<br>
+&nbspsys.exit(main(sys.argv[1:]))</font></p>
+
+      <div class="col-xs-12">
+        <img src="./static/assets/images/elfinal.png" class="img-responsive" alt="">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">*Write Code Here*
+      <div class="col-xs-12">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-XXXXX-X', 'auto');
+  ga('send', 'pageview');
+</script>
+
+--> <script type="text/javascript" src="./static/main.70a66962.js"></script></body>
+
+</html>

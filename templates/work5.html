@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="./static/assets/apple-icon-180x180.png">
+  <link href="./static/assets/rocketfavicon.ico" rel="icon">
+
+  <title>Selenium Automation</title>  
+
+<link href="./static/main.3f6952e4.css" rel="stylesheet"></head>
+
+<body class="">
+<div id="site-border-left"></div>
+<div id="site-border-right"></div>
+<div id="site-border-top"></div>
+<div id="site-border-bottom"></div>
+<!-- Add your content of header -->
+<header>
+  <nav class="navbar  navbar-fixed-top navbar-default">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav ">
+          <li><a href="./index.html" title="">01 : Home</a></li>
+          <li><a href="./works.html" title="">02 : Works</a></li>
+          <li><a href="./about.html" title="">03 : About me</a></li>
+          <li><a href="./contact.html" title="">04 : Contact</a></li>
+          
+        </ul>
+
+
+          <ul class="nav navbar-nav navbar-right navbar-small visible-md visible-lg">
+            <li><a href="./index.html" title="" class="active">001</a></li>
+            <li><a href="./index.html" title="">002</a></li>
+            <li><a href="./index.html" title="">003</a></li>
+            <li><a href="./index.html" title="">004</a></li>
+            <li><a href="./index.html" title="">005</a></li>
+            <li><a href="./index.html" title="">006</a></li>
+          </ul>
+
+
+      </div> 
+    </div>
+  </nav>
+</header>
+<div class="section-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <img src="./static/assets/images/work001-01.jpg" class="img-responsive" alt="">
+        <div class="card-container">
+          <div class="text-center">
+            <h1 class="h2">Selenium Automation</h1>
+          </div>
+          <br>
+          <p><font size='+2'>For more insight of the projects that im working on right now or the contributions that I have to open source you can always visit my GitHub account.Thank you very much!</p></font>
+            <p><font size='+1'>
+              GitHub : https://github.com/Sicxx211 or click this ->
+              <a href="https://github.com/Sicxx211/" title="" class="fa-icon">
+                        <i class="fa fa-github"></i>
+                      </a>
+            </p></font>
+            <small class="pull-right">-Andrei Bucur</small>
+        </div>
+      </div>
+      <h2> How I wrote the code </h2>
+      <br>
+      <p><font size='+2'>This is the first thing I have tried with Selenium, in the next days Im going to try even more things and im going to update this page once I have something more complex, until then I have this automation test that basically access the specified url, find a textbox where it will write whatever I input and press the send button.Fast and simple.</font></p>
+      <p><font size='+1'>
+from selenium import webdriver<br>
+from selenium.webdriver.chrome.service import Service<br>
+from selenium.webdriver.common.by import By<br>
+import time<br>
+service = Service(executable_path='./chromedriver')<br>
+chrome_browser = webdriver.Chrome(service=service)<br>
+
+chrome_browser.maximize_window()<br>
+chrome_browser.get('https://demo.seleniumeasy.com/basic-first-form-demo.html')<br> 
+
+assert 'Selenium Easy Demo' in chrome_browser.title<br> 
+assert 'Show Message' in chrome_browser.page_source<br>
+<br>
+
+#This is how we grab the input field of the browser and type something inside it<br>
+input_text = chrome_browser.find_element(By.ID, 'user-message')<br> 
+input_text.clear()<br>
+input_text.send_keys('Automated message engaged!')<br> 
+<br>
+#This will slow things a little bit so the browser won't detect the selenium automation as a robot<br>
+time.sleep(2)<br>
+<br>
+#This is how we grab the button on the page and actually click it<br> 
+show_message_button = chrome_browser.find_element(By.CLASS_NAME,'btn-default')<br>
+show_message_button.click()<br>
+<br>
+#This is how we grab the message that's being output after we click the button<br>
+output_message = chrome_browser.find_element(By.ID,'display')<br>
+assert 'Te iubesc mult de tot gogosica mea!' in output_message.text<br>
+<br>
+<br>
+#Sometimes selenium can get buggy with close or quit, you can actually write it twice so you can be sure it's working properly<br>
+# chrome_browser.close() #This is going to close the current window that we work on<br>
+# chrome_browser.quit() #Is going to completely close the chrome driver so all the session gets closed<br></font></p>
+
+      <div class="col-xs-12">
+        <img src="./static/assets/images/elfinal.png" class="img-responsive" alt="">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<footer class="footer-container text-center">
+  <div class="container">
+    <div class="row">*Write Code Here*
+      <div class="col-xs-12">
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+     navActivePage();
+  });
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-XXXXX-X', 'auto');
+  ga('send', 'pageview');
+</script>
+
+--> <script type="text/javascript" src="./static/main.70a66962.js"></script></body>
+
+</html>
